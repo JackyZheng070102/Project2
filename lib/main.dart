@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'home_screen.dart';  // Import your main screen
+import 'auth_screen.dart';  // Create a screen to handle Authentication
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,8 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Firebase Flutter App',
-      home: HomeScreen(),  // Navigate to your home screen
+      title: 'Flutter Firebase Auth',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: AuthScreen(),  // Set AuthScreen as the home screen
     );
   }
 }

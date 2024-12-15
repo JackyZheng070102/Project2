@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.t1"
+    namespace = "project2.t2"  // Update to your package name (e.g., project2.t2)
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -20,10 +20,8 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.t1"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
+        // Specify your unique Application ID (make sure it matches with Firebase setup)
+        applicationId = "project2.t2"  // Ensure this matches the Firebase project package name
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
@@ -32,13 +30,39 @@ android {
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
+            // Add your own signing config for the release build.
             signingConfig = signingConfigs.debug
         }
+    }
+
+    // Ensure Google Services plugin is applied (important for Firebase)
+    buildFeatures {
+        viewBinding true
     }
 }
 
 flutter {
     source = "../.."
+}
+
+// Apply the Google Services plugin to integrate Firebase
+apply plugin: 'com.google.gms.google-services'  // Apply Firebase services at the bottom of the file
+
+// Add Firebase SDK dependencies
+dependencies {
+    // Firebase BoM (Bill of Materials) to manage versions
+    implementation platform('com.google.firebase:firebase-bom:33.7.0')
+
+    // Firebase Analytics
+    implementation 'com.google.firebase:firebase-analytics'
+
+    // Firebase Firestore (for database functionality)
+    implementation 'com.google.firebase:firebase-firestore'
+
+    // Firebase Authentication (for user authentication)
+    implementation 'com.google.firebase:firebase-auth'
+
+    // Add more Firebase products as needed
+    // e.g., Firebase Cloud Messaging, Firebase Storage, etc.
+    // implementation 'com.google.firebase:firebase-messaging'
 }
